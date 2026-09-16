@@ -1,15 +1,16 @@
 using UnityEngine;
 
-namespace Dino.Clase
+public class UIWindow : MonoBehaviour
 {
-    public class UIWindow : MonoBehaviour
+    void Start()
     {
-        void Start()
-        {
-        }
+    }
 
-        void Update()
-        {
-        }
+    public virtual void Show()
+    {
+    }
+    
+    public virtual void Hide()
+    {
     }
 }

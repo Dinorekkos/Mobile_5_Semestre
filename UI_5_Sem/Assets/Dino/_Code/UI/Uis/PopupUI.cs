@@ -1,14 +1,6 @@
 using UnityEngine;
 
-public class PopupUI : MonoBehaviour
+public class PopupUI : UIWindow
 {
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
+    
 }
