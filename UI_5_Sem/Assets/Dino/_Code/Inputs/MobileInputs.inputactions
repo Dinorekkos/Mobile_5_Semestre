@@ -1,0 +1,57 @@
+{
+    "version": 1,
+    "name": "MobileInputs",
+    "maps": [
+        {
+            "name": "Interaction",
+            "id": "e77c9564-ce62-4658-9035-782060ec6d30",
+            "actions": [
+                {
+                    "name": "TouchPress",
+                    "type": "Button",
+                    "id": "cb07d93f-13a7-4e95-9ab1-048a4df01455",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true,
+                    "priority": 0
+                },
+                {
+                    "name": "EndPos",
+                    "type": "Value",
+                    "id": "e9b8573b-dfe0-4b68-814e-382bf648704f",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "10ad8fb5-778a-4eb5-9b2b-50df8af0a9b8",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TouchPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ce2ab82b-afdb-4d1d-9cbf-65e9c4b608ec",
+                    "path": "<Touchscreen>/primaryTouch/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EndPos",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
