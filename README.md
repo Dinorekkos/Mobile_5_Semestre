@@ -9,8 +9,8 @@ Este es un proyecto en unity de cómo contruir la UI de forma correcta y respons
 Este script contiene las referencias a los diferentes paneles de la UI del juego. Esta clase se encarga de mostrar y ocultar los diferentes paneles de la UI según sea necesario.
 
 ### Métodos Principales:
--  ShowUI(string windowID) : Muestra la ventana de la UI correspondiente al ID.
--  HideUI(string windowID) : Oculta la ventana de la UI correspondiente al ID.
+-  ShowWindow(string windowName) : Muestra la ventana de la UI correspondiente al ID.
+-  HideWindow(string windowName) : Oculta la ventana de la UI correspondiente al ID.
 -  HideAllUI() : Oculta todas las ventanas de la UI.
 -  GetWindow(string windowID) : Devuelve la ventana de la UI correspondiente al ID.
 
