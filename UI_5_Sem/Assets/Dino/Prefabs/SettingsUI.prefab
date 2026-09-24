@@ -94,9 +94,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 051980f8fb6bf474cb74590431882a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SettingsUI
-  _canvasRectTransform: {fileID: 0}
-  _canvasGroup: {fileID: 0}
-  _hideOnStart: 0
+  _id: settingsui
+  _canvasRectTransform: {fileID: 6937029505938011863}
+  _canvasGroup: {fileID: 9077301547778216664}
+  _hideOnStart: 1
   showDuration: 0.5
   hideDuration: 0.5
   showEase: 27
