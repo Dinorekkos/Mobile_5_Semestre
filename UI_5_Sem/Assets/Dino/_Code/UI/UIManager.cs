@@ -17,7 +17,6 @@ public class UIManager : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     public List<UIWindow> UIWindows => _uiWindows;
-    
 
     /// <summary>
     /// Muestra la ventana de UI con el nombre especificado.
