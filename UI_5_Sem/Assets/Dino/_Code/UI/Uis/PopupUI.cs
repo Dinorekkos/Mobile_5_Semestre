@@ -5,7 +5,7 @@ using UnityEngine;
 public class PopupUI : UIWindow
 {
 
-    #region MyRegion
+    #region Test Methods
 
     [Button("Test Show")]
     private void TestShow()
