@@ -7,9 +7,9 @@
             "id": "e77c9564-ce62-4658-9035-782060ec6d30",
             "actions": [
                 {
-                    "name": "TouchPress",
+                    "name": "PrimaryContact",
                     "type": "Button",
-                    "id": "cb07d93f-13a7-4e95-9ab1-048a4df01455",
+                    "id": "1d26747d-6d80-4fdb-89a1-fc6ae69eca81",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -17,9 +17,9 @@
                     "priority": 0
                 },
                 {
-                    "name": "EndPos",
+                    "name": "PrimaryPosition",
                     "type": "Value",
-                    "id": "e9b8573b-dfe0-4b68-814e-382bf648704f",
+                    "id": "818d90d9-4aa2-4770-908c-4b9cb9d8fb1d",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -30,23 +30,23 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "10ad8fb5-778a-4eb5-9b2b-50df8af0a9b8",
+                    "id": "89c9d908-db87-4267-a0c7-ad4c5b989e99",
                     "path": "<Touchscreen>/Press",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TouchPress",
+                    "action": "PrimaryContact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "ce2ab82b-afdb-4d1d-9cbf-65e9c4b608ec",
+                    "id": "1c268585-90e0-41db-ab9e-5a83b64ef39d",
                     "path": "<Touchscreen>/primaryTouch/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "EndPos",
+                    "action": "PrimaryPosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

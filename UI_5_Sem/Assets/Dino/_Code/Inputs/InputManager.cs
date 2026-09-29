@@ -6,34 +6,36 @@ using UnityEngine.InputSystem.Controls;
 
 public class InputManager : MonoBehaviour
 {
-  public Vector2 dragDirection;
-   
-   private void Start()
-   {
-   }
-   
-   
-   
-   
-   public void ReadPos(InputAction.CallbackContext context)
-   {
-      // if(EventSystem.current.IsPointerOverGameObject())
-      //    return;
-      
-      Vector2 startPos = Vector2.zero;
-      Vector2 endPos = Vector2.zero;
-      
-      if(context.started)
-      {
-         startPos = context.ReadValue<Vector2>();
-         Debug.Log($"Start Position: {startPos}");
-      }
-      
-      if(context.canceled)
-      {
-         endPos = context.ReadValue<Vector2>();
-         dragDirection = (endPos - startPos).normalized;
-         Debug.Log($"Drag Direction: {dragDirection}");
-      }
-   }
+    public Vector2 dragDirection;
+    private Vector2 startPosition;
+    private Vector2 finalPosition;
+    
+    InputActionMap interactionActionMap;
+    PlayerInput playerInput;
+    
+    private void Start()
+    {
+        playerInput = GetComponent<PlayerInput>();
+        interactionActionMap = playerInput.actions["Interaction"].actionMap;
+        
+        interactionActionMap["PrimaryContact"].started += OnTouchStarts;
+        interactionActionMap["PrimaryPosition"].canceled += OnTouchEnd;
+    }
+
+
+    public void OnTouchStarts(InputAction.CallbackContext context)
+    {
+        startPosition = context.ReadValue<Vector2>();
+        Debug.Log($"Start Position: {startPosition}");
+    }
+
+    private void OnTouchEnd(InputAction.CallbackContext context)
+    {
+        finalPosition = context.ReadValue<Vector2>();
+        Debug.Log($"Final Position: {finalPosition}");
+        dragDirection = finalPosition - startPosition;
+        dragDirection = dragDirection.normalized;
+        Debug.Log($"Drag Direction: {dragDirection}");
+    }
+
 }

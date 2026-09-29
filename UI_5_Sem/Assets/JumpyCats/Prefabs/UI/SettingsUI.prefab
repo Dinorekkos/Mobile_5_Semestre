@@ -2167,7 +2167,7 @@ MonoBehaviour:
   hideDuration: 0.5
   showEase: 27
   hideEase: 26
-  _volumeSlider: {fileID: 0}
+  _volumeSlider: {fileID: 854718847941111027}
 --- !u!1 &7848957616840569393
 GameObject:
   m_ObjectHideFlags: 0
