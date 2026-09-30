@@ -23,7 +23,7 @@ public class InputManager : MonoBehaviour
     {
         #region Drag Direction
         PlayerInput playerInput = GetComponent<PlayerInput>();
-        var interactionMap = playerInput.actions.FindActionMap("Interaction");
+        var interactionMap = playerInput.actions.FindActionMap("Drag");
 
         _contactAction = interactionMap.FindAction("PrimaryContact");
         _positionAction = interactionMap.FindAction("PrimaryPosition");

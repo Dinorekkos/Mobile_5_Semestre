@@ -3,7 +3,7 @@
     "name": "MobileInputs",
     "maps": [
         {
-            "name": "Interaction",
+            "name": "Drag",
             "id": "e77c9564-ce62-4658-9035-782060ec6d30",
             "actions": [
                 {
