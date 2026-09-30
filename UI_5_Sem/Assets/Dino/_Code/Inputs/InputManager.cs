@@ -6,36 +6,65 @@ using UnityEngine.InputSystem.Controls;
 
 public class InputManager : MonoBehaviour
 {
-    public Vector2 dragDirection;
+    #region Drag Direction
+    public event Action<Vector2> OnDragEnd;
+    
     private Vector2 startPosition;
-    private Vector2 finalPosition;
+    private Vector2 _currentPosition;
+    private bool _isDragging = false;
     
-    InputActionMap interactionActionMap;
-    PlayerInput playerInput;
+    private InputAction _contactAction;
+    private InputAction _positionAction;
     
+    #endregion
+    
+
     private void Start()
     {
-        playerInput = GetComponent<PlayerInput>();
-        interactionActionMap = playerInput.actions["Interaction"].actionMap;
+        #region Drag Direction
+        PlayerInput playerInput = GetComponent<PlayerInput>();
+        var interactionMap = playerInput.actions.FindActionMap("Interaction");
+
+        _contactAction = interactionMap.FindAction("PrimaryContact");
+        _positionAction = interactionMap.FindAction("PrimaryPosition");
         
-        interactionActionMap["PrimaryContact"].started += OnTouchStarts;
-        interactionActionMap["PrimaryPosition"].canceled += OnTouchEnd;
+        _contactAction.started += OnTouchStart;
+        _contactAction.canceled += OnTouchEnd;
+        
+        _positionAction.performed += OnPositionChanged;
+        #endregion
     }
 
-
-    public void OnTouchStarts(InputAction.CallbackContext context)
+    #region Drag Direction
+    private void OnTouchStart(InputAction.CallbackContext obj)
     {
-        startPosition = context.ReadValue<Vector2>();
-        Debug.Log($"Start Position: {startPosition}");
+        _isDragging = true;
+        startPosition = _positionAction.ReadValue<Vector2>();
+        _currentPosition = startPosition;
     }
-
+    private void OnPositionChanged(InputAction.CallbackContext obj)
+    {
+        if (_isDragging)
+            _currentPosition = obj.ReadValue<Vector2>();
+    }
     private void OnTouchEnd(InputAction.CallbackContext context)
     {
-        finalPosition = context.ReadValue<Vector2>();
-        Debug.Log($"Final Position: {finalPosition}");
-        dragDirection = finalPosition - startPosition;
-        dragDirection = dragDirection.normalized;
-        Debug.Log($"Drag Direction: {dragDirection}");
-    }
+        if (!_isDragging) return;
 
+        _isDragging = false;
+
+        Vector2 dragDirection = _currentPosition - startPosition;
+
+        if (dragDirection.sqrMagnitude > 0)
+            dragDirection.Normalize();
+
+        OnDragEnd?.Invoke(dragDirection);
+    }
+    
+    #endregion
+    
+
+
+  
+    
 }

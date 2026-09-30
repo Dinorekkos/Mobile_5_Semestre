@@ -59,4 +59,17 @@ public class UIManager : MonoBehaviour
             }
         }
     }
+    
+    public UIWindow GetWindow(string windowName)
+    {
+        foreach (var window in _uiWindows)
+        {
+            if (window.Id == windowName)
+            {
+                return window;
+            }
+        }
+        Debug.LogError("Window not found: " + windowName);
+        return null;
+    }
 }

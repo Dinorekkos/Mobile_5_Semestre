@@ -24,7 +24,9 @@ public class UIWindow : MonoBehaviour
     
     public CanvasGroup CanvasGroup => _canvasGroup;
     public RectTransform CanvasRectTransform => _canvasRectTransform;
-    public string Id =>_id; 
+    public string Id =>_id;
+
+    private bool _isShowing = false;
 
     void Start()
     {
@@ -57,9 +59,13 @@ public class UIWindow : MonoBehaviour
         // Si "instant" es falso, se activa el GameObject del Canvas y se muestra la ventana con animación.
         else
         {
+            _isShowing = true;
             _canvasRectTransform.gameObject.SetActive(true);
             RectTransform rectTransform = _canvasGroup.GetComponent<RectTransform>();
-            rectTransform.DOScale(Vector3.one, showDuration).SetEase(showEase);
+            rectTransform.DOScale(Vector3.one, showDuration).SetEase(showEase).OnComplete(() => 
+            {
+                _isShowing = false;
+            });
         }
     }
     
@@ -77,6 +83,11 @@ public class UIWindow : MonoBehaviour
         // Si "instant" es falso, se oculta la ventana con animación y luego se desactiva el GameObject del Canvas.
         else
         {
+            if (_isShowing)
+            {
+                Debug.Log("Window is currently showing. Cannot hide until the show animation is complete.");
+                return;
+            }
             RectTransform rectTransform = _canvasGroup.GetComponent<RectTransform>();
             rectTransform.DOScale(Vector3.zero, hideDuration).SetEase(hideEase).OnComplete(() => 
             {
