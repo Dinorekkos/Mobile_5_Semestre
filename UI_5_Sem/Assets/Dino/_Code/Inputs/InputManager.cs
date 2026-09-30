@@ -17,22 +17,37 @@ public class InputManager : MonoBehaviour
     private InputAction _positionAction;
     
     #endregion
-    
+
+    #region Tap
+
+    public event Action<bool> OnTapEvent;
+
+    bool _isTouching = false;
+
+    #endregion
+
+    #region Continuos
+
+    public event Action<Vector2> OnContinuousEvent;
+
+    #endregion
 
     private void Start()
     {
-        #region Drag Direction
         PlayerInput playerInput = GetComponent<PlayerInput>();
-        var interactionMap = playerInput.actions.FindActionMap("Drag");
+        #region Drag Direction
+        var dragMap = playerInput.actions.FindActionMap("Drag");
 
-        _contactAction = interactionMap.FindAction("PrimaryContact");
-        _positionAction = interactionMap.FindAction("PrimaryPosition");
+        _contactAction = dragMap.FindAction("PrimaryContact");
+        _positionAction = dragMap.FindAction("PrimaryPosition");
         
         _contactAction.started += OnTouchStart;
         _contactAction.canceled += OnTouchEnd;
         
         _positionAction.performed += OnPositionChanged;
         #endregion
+        
+        
     }
 
     #region Drag Direction
@@ -62,8 +77,39 @@ public class InputManager : MonoBehaviour
     }
     
     #endregion
-    
 
+
+    #region Tap
+
+    public void OnTap(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            _isTouching = true;
+            OnTapEvent?.Invoke(true);
+            Debug.Log("Touch started");
+        }
+        else if (context.canceled)
+        {
+            OnTapEvent?.Invoke(false);
+            _isTouching = false;
+            Debug.Log("Touch ended");
+        }
+    }
+
+    #endregion
+
+
+    #region Continuos
+
+    public void OnContinuous(InputAction.CallbackContext context)
+    {
+        Vector2 value = context.ReadValue<Vector2>();
+        Debug.Log($"Continuous input value: {value}");
+        OnContinuousEvent?.Invoke(value);
+    }
+
+    #endregion
 
   
     
