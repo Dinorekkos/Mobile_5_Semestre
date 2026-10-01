@@ -6,6 +6,9 @@ using UnityEngine.InputSystem.Controls;
 
 public class InputManager : MonoBehaviour
 {
+    
+    public static InputManager Instance { get; private set; }
+    
     #region Drag Direction
     public event Action<Vector2> OnDragEnd;
     
@@ -22,7 +25,7 @@ public class InputManager : MonoBehaviour
 
     public event Action<bool> OnTapEvent;
 
-    bool _isTouching = false;
+    private bool _isTouching = false;
 
     #endregion
 
@@ -31,6 +34,18 @@ public class InputManager : MonoBehaviour
     public event Action<Vector2> OnContinuousEvent;
 
     #endregion
+
+    private void Awake()
+    {
+        if(Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        
+        Instance = this;
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     private void Start()
     {
