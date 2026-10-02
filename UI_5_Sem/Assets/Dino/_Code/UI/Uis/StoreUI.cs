@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class StoreUI : UIWindow
 {
- 
     #region Test Methods
-
     [Button("Test Show")]
     private void TestShow()
     {
@@ -17,9 +15,5 @@ public class StoreUI : UIWindow
     {
         Hide();
     }
-
-
     #endregion
-    
-    
 }

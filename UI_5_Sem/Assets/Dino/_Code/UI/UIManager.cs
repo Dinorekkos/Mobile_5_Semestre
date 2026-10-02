@@ -8,17 +8,39 @@ using UnityEngine;
 /// </summary>
 public class UIManager : MonoBehaviour
 {
+    /// <summary>
+    /// Instancia única del UIManager en la escena.
+    /// </summary>
     public static UIManager Instance { get; private set; }
+
     /// <summary>
     /// Lista de UI en nuestra escena.
     /// </summary>
     [SerializeField] private List<UIWindow> _uiWindows;
-   
+
     /// <summary>
     /// Obtiene la lista de ventanas de UI.
     /// </summary>
     /// <returns></returns>
     public List<UIWindow> UIWindows => _uiWindows;
+
+
+    /// <summary>
+    /// Inicializa la instancia del UIManager y asegura que solo haya una instancia en la escena.
+    /// </summary>
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
+        // Asegura que el UIManager no se destruya al cargar una nueva escena.
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     /// <summary>
     /// Muestra la ventana de UI con el nombre especificado.
@@ -61,18 +83,12 @@ public class UIManager : MonoBehaviour
             }
         }
     }
-
-    private void Awake()
-    {
-        if(Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-        DontDestroyOnLoad(this.gameObject);
-    }
-
+    
+    /// <summary>
+    /// Obtiene la ventana de UI con el nombre especificado.
+    /// </summary>
+    /// <param name="windowName"></param>
+    /// <returns></returns>
     public UIWindow GetWindow(string windowName)
     {
         foreach (var window in _uiWindows)
@@ -82,6 +98,7 @@ public class UIManager : MonoBehaviour
                 return window;
             }
         }
+
         Debug.LogError("Window not found: " + windowName);
         return null;
     }
