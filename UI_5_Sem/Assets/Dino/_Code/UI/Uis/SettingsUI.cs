@@ -1,24 +1,35 @@
+using Dino.Utility.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
+using Dino.Utility.Audio;
 
 public class SettingsUI : UIWindow
 {
    [Header("SettingsUI")]
-   [SerializeField] private Slider _volumeSlider;
+   [SerializeField] private Slider _volumeSFXSlider;
+   [SerializeField] private Slider _volumeMusicSlider;
 
 
    public override void Initialize()
    {
       base.Initialize();
-      _volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
+      //Cuando cambia el valor del slider, se llama al método OnVolumeChanged
+      _volumeSFXSlider.onValueChanged.AddListener(OnVolumeSFXChanged);
+      _volumeMusicSlider.onValueChanged.AddListener(OnVolumeMusicChanged);
       
    }
 
-   private void OnVolumeChanged(float value)
+   private void OnVolumeMusicChanged(float volume)
    {
-      Debug.Log($"Volume changed to: {value}");
-      // Here you can add code to actually change the game's volume
+      Debug.Log($"Volume changed to: {volume}");
+      AudioManager.Instance.UpdateAudioMixerGroupVolume(volume,Dino.Utility.Audio.AudioType.Music);
+   }
+
+   private void OnVolumeSFXChanged(float volume)
+   {
+      Debug.Log($"Volume changed to: {volume}");
+      AudioManager.Instance.UpdateAudioMixerGroupVolume(volume,Dino.Utility.Audio.AudioType.SFX);
    }
    
    

@@ -380,7 +380,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 71
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2065,7 +2065,8 @@ MonoBehaviour:
   hideDuration: 0.5
   showEase: 27
   hideEase: 26
-  _volumeSlider: {fileID: 854718847941111027}
+  _volumeSFXSlider: {fileID: 4395949220576022205}
+  _volumeMusicSlider: {fileID: 854718847941111027}
 --- !u!1 &7848957616840569393
 GameObject:
   m_ObjectHideFlags: 0
